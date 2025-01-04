@@ -8,3 +8,14 @@ export const getContacts = async () => {
     console.error("Failed to fetch contacts data", error);
   }
 };
+
+export const getContactById = async (id: string) => {
+  try {
+    const contact = await prisma.contact.findUnique({
+      where: { id },
+    });
+    return contact;
+  } catch (error) {
+    console.error("Failed to fetch contacts data", error);
+  }
+};
