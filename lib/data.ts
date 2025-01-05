@@ -28,6 +28,7 @@ export const getContacts = async (query: string, currentPage: number) => {
 
 export const getContactById = async (id: string): Promise<Contact | null> => {
   try {
+    if (!id) return null;
     const contact = await prisma.contact.findUnique({
       where: { id },
     });

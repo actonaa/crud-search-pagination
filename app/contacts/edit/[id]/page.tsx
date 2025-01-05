@@ -3,13 +3,13 @@ import { getContactById } from "@/lib/data";
 import { notFound } from "next/navigation";
 
 interface UpdateContactPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const UpdateContactPage = async ({ params }: UpdateContactPageProps) => {
-  const id = params.id;
+  const { id } = await params;
   const contact = await getContactById(id);
 
   if (!contact) {
