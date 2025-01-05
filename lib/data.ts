@@ -1,3 +1,4 @@
+import { Contact } from "@prisma/client";
 import { prisma } from "./prisma";
 
 const ITEMS_PER_PAGE = 5;
@@ -25,7 +26,7 @@ export const getContacts = async (query: string, currentPage: number) => {
   }
 };
 
-export const getContactById = async (id: string) => {
+export const getContactById = async (id: string): Promise<Contact | null> => {
   try {
     const contact = await prisma.contact.findUnique({
       where: { id },
@@ -33,6 +34,7 @@ export const getContactById = async (id: string) => {
     return contact;
   } catch (error) {
     console.error("Failed to fetch contacts data", error);
+    throw error;
   }
 };
 

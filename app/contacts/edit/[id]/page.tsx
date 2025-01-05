@@ -2,7 +2,13 @@ import UpdateFrom from "@/components/edit-form";
 import { getContactById } from "@/lib/data";
 import { notFound } from "next/navigation";
 
-const UpdateContactPage = async ({ params }: { params: { id: string } }) => {
+interface UpdateContactPageProps {
+  params: {
+    id: string;
+  };
+}
+
+const UpdateContactPage = async ({ params }: UpdateContactPageProps) => {
   const id = params.id;
   const contact = await getContactById(id);
 
